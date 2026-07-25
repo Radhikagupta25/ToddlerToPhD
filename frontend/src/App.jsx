@@ -17,6 +17,7 @@ function App() {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const current = LEVELS.find((l) => l.key === activeLevel);
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ function App() {
     setOutput("");
 
     try {
-      const res = await fetch("http://localhost:8000/api/explain", {
+      const res = await fetch(`${API_URL}/api/explain`, { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: topic.trim(), level: activeLevel }),
