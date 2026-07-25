@@ -30,7 +30,7 @@ This project follows a modular architecture using Express, React, Tailwind CSS, 
 
 ---
 
-# 🛠 Features
+# Features
 
 | Feature | Status |
 |----------|--------|
@@ -44,7 +44,7 @@ This project follows a modular architecture using Express, React, Tailwind CSS, 
 
 ---
 
-# 🛠 Tech Stack
+# Tech Stack
 
 | Layer | Technology |
 |--------|------------|
@@ -58,7 +58,7 @@ This project follows a modular architecture using Express, React, Tailwind CSS, 
 
 ---
 
-# 📐 Project Architecture
+#  Project Architecture
 
 ```mermaid
 graph TD
@@ -133,7 +133,7 @@ ToddlerToPhD
 
 ---
 
-# ⚙ Explanation Flow
+#  Explanation Flow
 
 ## Requesting an Explanation
 
@@ -195,7 +195,7 @@ New Explanation Returned
 
 ---
 
-# 🔑 Environment Variables
+#  Environment Variables
 
 Create a `.env` file.
 
@@ -203,7 +203,6 @@ Create a `.env` file.
 PORT=
 CORS_ORIGIN=
 GEMINI_API_KEY=
-FRONTEND_URL=
 ```
 
 ---
@@ -286,7 +285,7 @@ POST   /api/explain
 
 ---
 
-# ✅ Why this Project?
+#  Why this Project?
 
 ✔ Real Prompt Engineering Across Multiple Complexity Tiers
 
@@ -332,7 +331,7 @@ Whether it's fixing a bug, improving documentation, or adding a feature, every c
 
 ---
 
-# 📝 Before Opening a Pull Request
+#  Before Opening a Pull Request
 
 - [ ] Project builds successfully
 - [ ] Code follows existing style
@@ -342,7 +341,7 @@ Whether it's fixing a bug, improving documentation, or adding a feature, every c
 
 ---
 
-# 🗺 Roadmap
+#  Roadmap
 
 - [ ] Streaming Responses (SSE)
 - [ ] Structured JSON Output (explanation, analogy, fun fact)
@@ -361,7 +360,7 @@ This project is licensed under the MIT License.
 
 ---
 
-# 💬 Support
+#  Support
 
 If you found this project useful:
 
