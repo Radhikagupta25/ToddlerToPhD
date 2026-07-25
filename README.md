@@ -1,7 +1,10 @@
 # ToddlerToPhD
 
 <p align="center">
-  <em>An AI-powered explanation API and web app that adjusts any topic across three comprehension levels — Toddler, Teenager, and Expert — using the Gemini API.</em>
+  <em>
+    An AI-powered explanation API and web app that transforms any topic across
+    three comprehension levels — Toddler, Teenager, and Expert — using the Gemini API.
+  </em>
 </p>
 
 <p align="center">
@@ -18,43 +21,58 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=8E75B2&center=true&vCenter=true&width=850&lines=Explain+Any+Topic+at+Any+Level.;Toddler.+Teenager.+Expert.;Powered+by+the+Gemini+API.;Level-Aware+Prompt+Engineering.;Reusable+in+any+MERN+Project." />
 </p>
 
+<p align="center">
+  <a href="https://toddler-to-ph-d.vercel.app/">
+    <strong> Live Demo</strong>
+  </a>
+</p>
+
 ---
 
 ## About
 
-**ToddlerToPhD** is a full-stack AI application that explains any topic at three distinct comprehension levels — Toddler, Teenager, and Expert.
+**ToddlerToPhD** is a full-stack AI application that explains any topic at three distinct comprehension levels — **Toddler, Teenager, and Expert**.
 
-Instead of a single static explanation, the app dynamically constructs a level-specific prompt and sends it to the Gemini API, so the same topic can be re-explained at a different depth instantly, without retyping.
+Instead of producing a single static explanation, the application dynamically constructs a level-specific prompt and sends it to the **Gemini API**.
 
-This project follows a modular architecture using Express, React, Tailwind CSS, and the Gemini API.
+Users can instantly switch between comprehension levels while keeping the same topic, allowing the same concept to be re-explained with different vocabulary, depth, and technical complexity.
+
+The project follows a modular full-stack architecture using **React, Vite, Tailwind CSS, Node.js, Express, and the Gemini API**.
 
 ---
 
-# Features
+#  Features
 
 | Feature | Status |
 |----------|--------|
-| Topic Input & Level Selector (Toddler / Teenager / Expert) | ✅ |
+| Topic Input & Level Selector | ✅ |
+| Toddler / Teenager / Expert Modes | ✅ |
 | Level-Specific Prompt Engineering | ✅ |
-| Instant Level Switching (same topic, new depth) | ✅ |
-| Split Ask / Answer Layout with Internal Scroll | ✅ |
-| Background & Accent Color Adapts per Level | ✅ |
-| Loading & Error States | ✅ |
-| Modular Service Architecture | ✅ |
+| Instant Level Switching | ✅ |
+| Split Ask / Answer Interface | ✅ |
+| Scrollable Explanation Panel | ✅ |
+| Level-Adaptive Background & Accent Colors | ✅ |
+| Loading States | ✅ |
+| Error Handling | ✅ |
+| Modular Controller & Service Architecture | ✅ |
+| Gemini API Integration | ✅ |
+| Production Deployment | ✅ |
 
 ---
 
-# Tech Stack
+#  Tech Stack
 
 | Layer | Technology |
-|--------|------------|
+|-------|------------|
 | Runtime | Node.js |
-| Framework | Express.js |
+| Backend Framework | Express.js |
 | Frontend | React + Vite |
 | Styling | Tailwind CSS |
 | AI Engine | Google Gemini API (`@google/genai`) |
 | Icons | lucide-react |
-| Environment | dotenv |
+| Environment Configuration | dotenv |
+| Frontend Deployment | Vercel |
+| Backend Deployment | Render |
 
 ---
 
@@ -63,44 +81,60 @@ This project follows a modular architecture using Express, React, Tailwind CSS, 
 ```mermaid
 graph TD
 
-A[Client]
-
+A[React Client]
 B[Express API]
-
 C[Explain Controller]
-
 D[Gemini Service]
-
 E[Level Prompt Map]
-
 F[Gemini API]
 
 A -->|POST /api/explain| B
-
 B --> C
-
 C --> D
-
 D --> E
-
 D --> F
-
-F -->|Generated Text| C
-
+F -->|Generated Explanation| D
+D --> C
 C -->|JSON Response| A
+```
+
+### Production Architecture
+
+```text
+User
+  │
+  ▼
+React + Vite
+Vercel
+  │
+  │ POST /api/explain
+  ▼
+Express API
+Render
+  │
+  ▼
+Gemini Service
+  │
+  ▼
+Google Gemini API
+  │
+  ▼
+Generated Explanation
+  │
+  ▼
+React UI
 ```
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```text
 ToddlerToPhD
-
 │
-
 ├── backend
 │   ├── public
+│   │
 │   ├── src
 │   │   ├── controllers
 │   │   ├── middlewares
@@ -118,6 +152,7 @@ ToddlerToPhD
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   │
+│   ├── .env.sample
 │   └── package.json
 │
 ├── postman
@@ -133,71 +168,113 @@ ToddlerToPhD
 
 ---
 
-#  Explanation Flow
+#  How It Works
 
 ## Requesting an Explanation
 
 ```text
 User
-
-↓
-
+  │
+  ▼
 Enter Topic
-
-↓
-
-Select Level
-
-↓
-
-Map Level to Prompt Instruction
-
-↓
-
-Merge Instruction + Topic
-
-↓
-
-Send to Gemini API
-
-↓
-
-Return Explanation
-
-↓
-
-Render in Answer Panel
+  │
+  ▼
+Select Comprehension Level
+  │
+  ▼
+Level → Prompt Instruction
+  │
+  ▼
+Prompt Instruction + Topic
+  │
+  ▼
+Gemini API
+  │
+  ▼
+Generated Explanation
+  │
+  ▼
+Answer Panel
 ```
+
+The backend maps the selected comprehension level to a dedicated prompt instruction before sending the request to Gemini.
+
+This allows the AI behavior to be controlled by the application instead of relying entirely on the user's prompt.
 
 ---
 
 ## Switching Levels
 
+Users do not need to re-enter their topic when they want a different explanation.
+
 ```text
-User
+Existing Topic
+     │
+     ▼
+Select New Level
+     │
+     ▼
+New Level-Specific Prompt
+     │
+     ▼
+Gemini API
+     │
+     ▼
+New Explanation
+```
 
-↓
+For example:
 
-Click a Different Level Tab
+```text
+Topic: Quantum Computing
 
-↓
+Toddler
+→ Simple intuition and analogy
 
-Same Topic Re-Submitted
+Teenager
+→ Accessible explanation with core concepts
 
-↓
-
-New Level-Specific Prompt Built
-
-↓
-
-New Explanation Returned
+Expert
+→ Technical terminology and deeper reasoning
 ```
 
 ---
 
 #  Environment Variables
 
-Create a `.env` file.
+The frontend and backend use **separate environment configurations**.
+
+---
+
+## Backend Environment
+
+Create:
+
+```text
+backend/.env
+```
+
+Add:
+
+```env
+PORT=8000
+CORS_ORIGIN=http://localhost:5173
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+### Variables
+
+| Variable | Description |
+|----------|-------------|
+| `PORT` | Port used by the Express server during local development |
+| `CORS_ORIGIN` | Frontend origin allowed to access the backend API |
+| `GEMINI_API_KEY` | API key used by the backend to communicate with Gemini |
+
+The sample file should contain:
+
+```text
+backend/.env.sample
+```
 
 ```env
 PORT=
@@ -205,179 +282,409 @@ CORS_ORIGIN=
 GEMINI_API_KEY=
 ```
 
+> `GEMINI_API_KEY` must remain server-side and must never be exposed to the React application.
+
+---
+
+## Frontend Environment
+
+Create:
+
+```text
+frontend/.env
+```
+
+Add:
+
+```env
+VITE_BACKEND_URL=http://localhost:8000
+```
+
+### Variables
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_BACKEND_URL` | Base URL of the Express backend |
+
+The sample file should contain:
+
+```text
+frontend/.env.sample
+```
+
+```env
+VITE_BACKEND_URL=
+```
+
+The frontend accesses it using:
+
+```javascript
+const API_URL = import.meta.env.VITE_BACKEND_URL;
+```
+
+> Vite only exposes environment variables prefixed with `VITE_` to frontend code.
+
 ---
 
 # 🚀 Getting Started
 
-## Clone
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Radhikagupta25/ToddlerToPhD.git
+cd ToddlerToPhD
 ```
 
-# Environment Setup
+---
+
+## 2. Backend Setup
+
+Navigate to the backend:
+
 ```bash
 cd backend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create your environment file:
+
+```bash
 cp .env.sample .env
 ```
 
-# Populate .env with following environment variables:
-```bash
-PORT=
-CORS_ORIGIN=
-GEMINI_API_KEY=
-FRONTEND_URL=
+Configure:
+
+```env
+PORT=8000
+CORS_ORIGIN=http://localhost:5173
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
-# Install & Run
+Start the development server:
 
 ```bash
-# Backend
-cd backend
-npm install
-npm run dev
-
-# Frontend
-cd ../frontend
-npm install
 npm run dev
 ```
 
-# Accessing the App
-Once both servers are running, the API will be available at:
-```bash
+The backend will be available at:
+
+```text
 http://localhost:8000
 ```
 
-The frontend will be available at:
+---
+
+## 3. Frontend Setup
+
+Open another terminal and navigate to:
+
 ```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create the frontend environment file:
+
+```bash
+cp .env.sample .env
+```
+
+Configure:
+
+```env
+VITE_BACKEND_URL=http://localhost:8000
+```
+
+Start Vite:
+
+```bash
+npm run dev
+```
+
+The frontend will be available at:
+
+```text
 http://localhost:5173
 ```
 
 ---
 
-# 📮 API Collection
+# 📡 API Reference
 
-A complete Postman collection is included for testing every endpoint.
+## Generate Explanation
 
+```http
+POST /api/explain
 ```
+
+### Request Body
+
+```json
+{
+  "topic": "Quantum Computing",
+  "level": "teenager"
+}
+```
+
+Supported levels:
+
+```text
+toddler
+teenager
+expert
+```
+
+### Example Response
+
+```json
+{
+  "explanation": "Generated explanation..."
+}
+```
+
+---
+
+# 📮 Postman Collection
+
+A Postman collection is included for testing the API independently from the frontend.
+
+```text
 postman/
-    ToddlerToPhD.postman_collection.json
+└── ToddlerToPhD.postman_collection.json
 ```
 
 Included requests:
 
-### Explain
-
-- Explain Topic (Toddler)
-- Explain Topic (Teenager)
-- Explain Topic (Expert)
+- Explain Topic — Toddler
+- Explain Topic — Teenager
+- Explain Topic — Expert
 
 ---
 
-# 📡 API Endpoints
+#  Deployment
 
-### Explain
+ToddlerToPhD uses separate deployments for the frontend and backend.
 
-```
-POST   /api/explain
+```text
+GitHub
+   │
+   ├───────────────┐
+   ▼               ▼
+frontend/        backend/
+   │               │
+   ▼               ▼
+Vercel           Render
+   │               │
+   └──────► API ◄──┘
+                   │
+                   ▼
+               Gemini API
 ```
 
 ---
 
-#  Why this Project?
+## Frontend — Vercel
 
-✔ Real Prompt Engineering Across Multiple Complexity Tiers
+The React/Vite frontend is deployed using Vercel.
 
-✔ Level-Aware, Reusable AI Service Layer
+Production environment:
 
-✔ Clean Ask/Answer UI with Internal Scroll (no page-jump)
+```env
+VITE_BACKEND_URL=YOUR_RENDER_BACKEND_URL
+```
 
-✔ Modular Controller/Service Architecture
+### Live Application
 
-✔ Easy to Extend into RAG, Streaming, or Auth
+```text
+YOUR_VERCEL_URL
+```
+
+---
+
+## Backend — Render
+
+The Express backend is deployed using Render.
+
+Production environment:
+
+```env
+CORS_ORIGIN=YOUR_VERCEL_URL
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Render provides the production `PORT` environment variable automatically, so it does not need to be manually configured.
+
+The server should use:
+
+```javascript
+const PORT = process.env.PORT || 8000;
+```
+
+---
+
+#  Security Notes
+
+The Gemini API key exists **only on the backend**.
+
+```text
+Browser
+   │
+   │ topic + level
+   ▼
+Express Backend
+   │
+   │ GEMINI_API_KEY
+   ▼
+Gemini API
+```
+
+The frontend never communicates directly with Gemini and never receives the API key.
+
+Important practices used by the project:
+
+- Environment-based configuration
+- Server-side API key management
+- CORS restrictions
+- Input handling through the backend API
+- Separate frontend and backend deployment environments
+- No secrets committed to source control
+
+---
+
+#  Why This Project?
+
+ToddlerToPhD demonstrates more than simply calling an AI API.
+
+### Level-Aware Prompt Engineering
+
+The backend controls how Gemini explains a topic based on the selected comprehension level.
+
+### Reusable AI Service Layer
+
+Gemini-specific logic is separated from controllers, making the AI integration easier to maintain and extend.
+
+### Full-Stack AI Integration
+
+```text
+React
+  ↓
+Express
+  ↓
+Prompt Engineering
+  ↓
+Gemini
+```
+
+### Adaptive User Experience
+
+Each comprehension level changes the visual identity of the interface while preserving the same interaction model.
+
+### Extensible Architecture
+
+The existing architecture can be extended with:
+
+- Streaming
+- Authentication
+- Response caching
+- History
+- RAG
+- Document explanation
+- Structured AI output
+
+---
+
+# 🗺️ Roadmap
+
+- [ ] Streaming Responses with SSE
+- [ ] Structured JSON Output
+- [ ] Explanation + Analogy + Fun Fact
+- [ ] MongoDB-Backed Response Caching
+- [ ] JWT Authentication
+- [ ] Saved Explanation History
+- [ ] Explain This Document — RAG Pipeline
+- [ ] Docker Support
+- [ ] Unit & Integration Testing
+- [ ] CI/CD Pipeline
 
 ---
 
 # 🤝 Contributing
 
-Contributions are always welcome!
+Contributions are welcome.
 
-If you'd like to improve this project:
+## 1. Fork the Repository
 
-1. Fork the repository
+Fork ToddlerToPhD to your GitHub account.
 
-2. Create a feature branch
+## 2. Create a Feature Branch
 
 ```bash
 git checkout -b feature/your-feature
 ```
 
-3. Commit your changes
+## 3. Commit Your Changes
 
 ```bash
 git commit -m "feat: add your feature"
 ```
 
-4. Push your branch
+## 4. Push the Branch
 
 ```bash
 git push origin feature/your-feature
 ```
 
-5. Open a Pull Request
+## 5. Open a Pull Request
 
-Whether it's fixing a bug, improving documentation, or adding a feature, every contribution is appreciated.
+Bug fixes, documentation improvements, UI enhancements, and new features are welcome.
 
 ---
 
-#  Before Opening a Pull Request
+# ✅ Before Opening a Pull Request
 
 - [ ] Project builds successfully
-- [ ] Code follows existing style
-- [ ] No sensitive information committed
-- [ ] Environment variables documented
-- [ ] Tested locally
-
----
-
-#  Roadmap
-
-- [ ] Streaming Responses (SSE)
-- [ ] Structured JSON Output (explanation, analogy, fun fact)
-- [ ] MongoDB-Backed Response Caching
-- [ ] JWT Authentication + Saved History
-- [ ] "Explain this Document" — RAG Pipeline
-- [ ] Docker Support
-- [ ] Unit Testing
-- [ ] CI/CD Pipeline
+- [ ] Feature has been tested locally
+- [ ] Code follows the existing project structure
+- [ ] No API keys or sensitive information are committed
+- [ ] New environment variables are documented
+- [ ] Existing functionality remains intact
 
 ---
 
 # 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**.
 
 ---
 
-#  Support
+# ⭐ Support
 
-If you found this project useful:
+If you found ToddlerToPhD useful:
 
 ⭐ Star the repository
 
-🍴 Fork it
+🍴 Fork the project
 
-🐞 Open Issues
+🐞 Report bugs through Issues
 
-🚀 Submit Pull Requests
+🚀 Submit improvements through Pull Requests
 
 ---
 
 <p align="center">
+  Built with ❤️ by <b>Radhika Gupta</b>
+</p>
 
-Built with ❤️ by <b>Radhika Gupta</b>
-
-If this project saved you time, consider giving it a ⭐ on GitHub.
-
+<p align="center">
+  If this project helped you, consider giving it a ⭐ on GitHub.
 </p>
