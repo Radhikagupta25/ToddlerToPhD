@@ -89,7 +89,6 @@ function App() {
             </p>
           </div>
 
-          {/* Right: output, caps height and scrolls internally once it grows */}
           <div className="bg-gray-900 border border-gray-800 rounded-3xl p-6 sm:p-7 shadow-2xl">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles size={16} style={{ color: current.accent }} />
