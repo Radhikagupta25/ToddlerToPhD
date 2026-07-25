@@ -23,7 +23,7 @@
 
 <p align="center">
   <a href="https://toddler-to-ph-d.vercel.app/">
-    <strong> Live Demo</strong>
+    <strong>🚀 Live Demo</strong>
   </a>
 </p>
 
@@ -326,7 +326,7 @@ const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 ---
 
-# 🚀 Getting Started
+#  Getting Started
 
 ## 1. Clone the Repository
 
@@ -454,7 +454,7 @@ expert
 
 ---
 
-# 📮 Postman Collection
+#  Postman Collection
 
 A Postman collection is included for testing the API independently from the frontend.
 
