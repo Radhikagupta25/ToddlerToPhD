@@ -12,6 +12,13 @@ function Form({ level, accent }) {
         setLoading(true);
         setOutput("");
 
+        // TODO: replace with real API call, e.g.
+        // const res = await fetch("/api/explain", {
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify({ topic, level }),
+        // });
+
         setTimeout(() => {
             setOutput(`(${level} level) Here's an explanation of "${topic}"...`);
             setLoading(false);
